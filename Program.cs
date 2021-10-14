@@ -1,9 +1,11 @@
+using Catalog.Repositories;
 using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
+builder.Services.AddSingleton<IItemsRepository, InMemItemsRepository>();
 builder.Services.AddControllers();
 builder.Services.AddSwaggerGen(c =>
 {
