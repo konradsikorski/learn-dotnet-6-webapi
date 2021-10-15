@@ -17,7 +17,9 @@ builder.Services.AddSingleton<IMongoClient>(serviceProvider => {
 });
 
 builder.Services.AddSingleton<IItemsRepository, MongoDbItemsRepository>();
-builder.Services.AddControllers();
+builder.Services.AddControllers( options => {
+    options.SuppressAsyncSuffixInActionNames = false;
+});
 builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1", new() { Title = "Catalog", Version = "v1" });
