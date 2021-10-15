@@ -13,9 +13,9 @@
 
 ## What to check
 
-1. HelthCheckUI https://github.com/Xabaril/AspNetCore.Diagnostics.HealthChecks
-2. DateTimeOffset
-3. HealthChecks for Azure Service Bus, Azure Storage, Azure Key Vault, Azure IoT Hub
+* [ ] HelthCheckUI https://github.com/Xabaril/AspNetCore.Diagnostics.HealthChecks
+* [x] DateTimeOffset
+* [ ] HealthChecks for Azure Service Bus, Azure Storage, Azure Key Vault, Azure IoT Hub
 
 ## Terminal Commands
 
