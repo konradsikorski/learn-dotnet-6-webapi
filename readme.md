@@ -21,7 +21,7 @@
 
 ## Terminal Commands
 
-```text
+```powershell
 docker ps
 docker stop mongo
 docker volume ls
@@ -29,12 +29,12 @@ docker volume rm mongodbdata
 docker run -d --rm --name mongo -p 27017:27017 -v mongodbdata:/data/db -e MONGO_INITDB_ROOT_USERNAME=mongoadmin -e MONGO_INITDB_ROOT_PASSWORD=Pass#word1 mongo
 ```
 
-```text
+```powershell
 dotnet user-secrets init
 dotnet user-secrets set MongoDbSettings:Password Pass#word1
 ```
 
-```text
+```powershell
 docker build -t catalog:v1 .
 docker network create net5tutorial
 docker network ls
@@ -43,7 +43,7 @@ docker images
 docker run -it --rm -p 8080:80 -e MongoDbSettings:Host=mongo -e MongoDbSettings:Password=Pass#word1 --network net5tutorial catalog:v1
 ```
 
-```text
+```powershell
 docker login
 docker tag catalog:v1 DOCKER_ID/catalog:v1
 docker push DOCKER_ID/catalog:v1
@@ -51,4 +51,22 @@ docker rmi catalog:v1
 docker rmi DOCKER_ID/catalog:v1
 docker logout
 docker run -it --rm -p 8080:80 -e MongoDbSettings:Host=mongo -e MongoDbSettings:Password=Pass#word1 --network net5tutorial DOCKER_ID/catalog:v1
+```
+
+```powershell
+kubectl config current-context
+kubectl create secret generic catalog-secrets --from-literal=mongodb-password='Pass#word1'
+kubectl apply -f .\catalog.yaml
+kubectl get deployments
+kubectl get pods
+kubectl logs catalog-deployment-65b4f4d4cb-cw7vx
+kubectl apply -f .\mongodb.yaml
+kubectl get statefulsets
+```
+
+```powershell
+kubectl get pods -w
+kubectl delete pod catalog-deployment-65b4f4d4cb-cw7vx
+kubectl delete pod mongodb-statefulset-0
+kubectl scale deployments/catalog-deployment --replicas=3
 ```
