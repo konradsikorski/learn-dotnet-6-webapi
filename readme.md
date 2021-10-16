@@ -70,3 +70,13 @@ kubectl delete pod catalog-deployment-65b4f4d4cb-cw7vx
 kubectl delete pod mongodb-statefulset-0
 kubectl scale deployments/catalog-deployment --replicas=3
 ```
+
+```powershell
+docker build -t DOCKER_ID/catalog:v2 .
+docker login
+docker push DOCKER_ID/catalog:v2
+kubectl apply -f .\catalog.yaml
+kubectl logs catalog-deployment-6c7967cd4f-82ckx -f
+kubectl logs catalog-deployment-6c7967cd4f-hnml7 -f
+kubectl logs catalog-deployment-6c7967cd4f-wd899 -f
+```
