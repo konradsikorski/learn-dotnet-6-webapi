@@ -1,7 +1,7 @@
 using System.Net.Mime;
 using System.Text.Json;
-using Catalog.Repositories;
-using Catalog.Settings;
+using Catalog.Api.Repositories;
+using Catalog.Api.Settings;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.OpenApi.Models;
 using MongoDB.Bson.Serialization;

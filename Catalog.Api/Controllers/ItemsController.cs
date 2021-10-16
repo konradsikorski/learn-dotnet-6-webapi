@@ -1,9 +1,9 @@
-using Catalog.Dto;
-using Catalog.Entities;
-using Catalog.Repositories;
+using Catalog.Api.Dto;
+using Catalog.Api.Entities;
+using Catalog.Api.Repositories;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Catalog.Controllers
+namespace Catalog.Api.Controllers
 {
     [ApiController]
     [Route("items")]

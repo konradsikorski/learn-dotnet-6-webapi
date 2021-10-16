@@ -80,3 +80,7 @@ kubectl logs catalog-deployment-6c7967cd4f-82ckx -f
 kubectl logs catalog-deployment-6c7967cd4f-hnml7 -f
 kubectl logs catalog-deployment-6c7967cd4f-wd899 -f
 ```
+
+```powershell
+docker build -t DOCKER_ID/catalog:v3 .
+```
