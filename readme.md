@@ -83,4 +83,5 @@ kubectl logs catalog-deployment-6c7967cd4f-wd899 -f
 
 ```powershell
 docker build -t DOCKER_ID/catalog:v3 .
+dotnet new xunit -n Catalog.UnitTests
 ```
