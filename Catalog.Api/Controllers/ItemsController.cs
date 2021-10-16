@@ -29,7 +29,7 @@ namespace Catalog.Api.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<ItemDto>> GetItemsAsync(Guid id)
+        public async Task<ActionResult<ItemDto>> GetItemAsync(Guid id)
         {
             var item = await repository.GetItemAsync(id);
 
@@ -50,7 +50,7 @@ namespace Catalog.Api.Controllers
 
             await repository.CreateItemAsync(item);
 
-            return CreatedAtAction(nameof(GetItemsAsync), new {id = item.Id}, item.AsDto());
+            return CreatedAtAction(nameof(GetItemAsync), new {id = item.Id}, item.AsDto());
         }
 
         [HttpPut("{id}")]
@@ -73,7 +73,7 @@ namespace Catalog.Api.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult> DeleteItemAsync(Guid id)
         {
-            var existingItem = repository.GetItemAsync(id);
+            var existingItem = await repository.GetItemAsync(id);
 
             if(existingItem == null) return NotFound();
 
