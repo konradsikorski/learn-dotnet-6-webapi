@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Catalog.Api.Controllers;
 using Catalog.Api.Dto;
@@ -66,6 +67,33 @@ public class ItemsControllerTest
         var actualItems = await controller.GetItemsAsync();
 
         actualItems.Should().BeEquivalentTo(expectedItems);
+    }
+
+    [Fact]
+    public async Task GetItemsAsync_WithMatchingItems_ReturnMatchingItems()
+    {
+        var allItems = new[]
+        {
+            new Item() { Name = "Potion" },
+            new Item() { Name = "Antidote" },
+            new Item() { Name = "Hi-Potion" },
+            new Item() { Name = "poTion" }
+        };
+
+        var nameToMatch = "Potion";
+
+        repositoryStub
+            .Setup( repo => repo.GetItemsAsync())
+            .ReturnsAsync(allItems);
+        
+        var controller = new ItemsController(repositoryStub.Object, loggerStub.Object);
+        IEnumerable<ItemDto> foundItems = await controller.GetItemsAsync(nameToMatch);
+
+        foundItems.Should().OnlyContain(
+            item => item.Name == allItems[0].Name
+            || item.Name == allItems[2].Name
+            || item.Name == allItems[3].Name
+        );
     }
 
     [Fact]
